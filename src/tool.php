@@ -109,7 +109,7 @@ function formatSize(int $bytes, int $decimals = 2)
 
     foreach ($quant as $unit => $mag) {
         if (doubleval($bytes) >= $mag) {
-            return number_format($bytes / $mag, $decimals) . ' ' . $unit;
+            return number_format($bytes / $mag, $decimals) . '' . $unit;
         }
     }
     return false;

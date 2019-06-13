@@ -7,7 +7,14 @@
 RUNDIR=$(cd $(dirname $0); pwd)
 cd $RUNDIR
 
-PHP_CLI="/usr/bin/env php"
+#准备环境
+if [ -r online_preboot.sh ]; then
+    source ./online_preboot.sh
+fi
+
+if [ -z "$PHP_CLI" ]; then
+    PHP_CLI="/usr/bin/env php"
+fi
 PHP_RESQUE="${RUNDIR}/vendor/bin/resque"
 #export VVERBOSE=1 # for debugging
 export REDIS_BACKEND=$(php -r "require './config.php'; echo REDIS;")
@@ -19,6 +26,7 @@ export INTERVAL=5
 export PIDFILE=${RUNDIR}/logs/resque.pid
 export LOGFILE=${RUNDIR}/logs/resque.log
 [ -d ${RUNDIR}/logs ] || mkdir -p ${RUNDIR}/logs
+[ -d ${RUNDIR}/downloads ] || mkdir -p ${RUNDIR}/downloads
 
 get_pid() {
     if [ -f $PIDFILE ]; then

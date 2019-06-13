@@ -24,8 +24,8 @@ require_once './config.php';
 require_once './tool.php';
 
 // 检测PHP环境
-if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-    make_response('require PHP > 5.3.0 !');
+if (version_compare(PHP_VERSION, '7.0.0', '<')) {
+    make_response('require PHP > 7.0.0 !');
 }
 
 // 不支持命令行
