@@ -1,0 +1,56 @@
+##### Windows
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+##### MacOS
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+##### GPG
+secring.*
+
+##### SVN
+.svn/
+
+##### VisualStudioCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+##### Composer
+composer.phar
+vendor/**/.git
+
+# Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
+# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
+# composer.lock
+
+##### PHP CodeSniffer
+# gitignore for the PHP Codesniffer framework
+# website: https://github.com/squizlabs/PHP_CodeSniffer
+#
+# Recommended template: PHP.gitignore
+
+/wpcs/*
+
+##### Others
+src/downloads/*
+src/logs/*
