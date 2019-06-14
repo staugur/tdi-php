@@ -17,7 +17,7 @@ if [ -z "$PHP_CLI" ]; then
 fi
 PHP_RESQUE="${RUNDIR}/vendor/bin/resque"
 #export VVERBOSE=1 # for debugging
-export REDIS_BACKEND=$(php -r "require './config.php'; echo REDIS;")
+export REDIS_BACKEND=$($PHP_CLI -r "require './config.php'; echo REDIS;")
 export APP_INCLUDE=${RUNDIR}/qf.php
 export QUEUE=default
 export COUNT=1

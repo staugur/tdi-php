@@ -55,3 +55,4 @@ vendor/**/.git
 src/downloads/*
 src/logs/*
 src/config.php
+src/online_preboot.sh
