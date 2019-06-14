@@ -7,7 +7,7 @@ ini_set('memory_limit', '256M');
 require_once './config.php';
 require_once './tool.php';
 
-//异步任务类
+// 异步任务类
 class DownloadBoard
 {
     public function writeREADME(string $filename, string $content)

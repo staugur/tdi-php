@@ -18,10 +18,10 @@
 
 ## 部署：
 
-1. 要求： php5.3+和Redis
+1. 要求： PHP7+和Redis
 2. 下载： `git clone https://github.com/staugur/tdi-php && cd tdi-php/src`
 3. 依赖： 必需扩展curl、zip、redis，可选扩展proctitle
-4. 配置： 即config.php
+4. 配置： 即config.php，必填项是REDIS和TOKEN
 5. 启动： 
     - 启动php-fpm进程：例如`service php-fpm start`
     - 启动队列处理进程：sh online_rq.sh start # 若需前台启动，将start换成run即可
@@ -29,7 +29,7 @@
 
 ## 更多文档：
 
-[点击查看文档](https://docs.saintic.com/tdi-php/install.html "点击查看部署及使用文档")，关于普通部署、Docker部署、使用手册、注意事项等问题。
+[点击查看文档](https://docs.saintic.com/tdi-php/install.html "点击查看部署及使用文档")，关于普通部署、使用手册、注意事项等问题。
 
 若上述地址异常，备用地址是：[https://saintic-docs.readthedocs.io/tdi-php/install.html](https://saintic-docs.readthedocs.io/tdi-php/install.html)
 
