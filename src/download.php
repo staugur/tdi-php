@@ -12,7 +12,7 @@
 */
 
 // 应用入口文件
-error_reporting(E_NOTICE);
+error_reporting(0); //开发时可以注释
 ini_set('display_errors', 'Off');
 
 // 设置时区和返回头

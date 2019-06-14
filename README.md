@@ -20,8 +20,8 @@
 
 1. 要求： PHP7+和Redis
 2. 下载： `git clone https://github.com/staugur/tdi-php && cd tdi-php/src`
-3. 依赖： 必需扩展curl、zip、redis，可选扩展proctitle
-4. 配置： 即config.php，必填项是REDIS和TOKEN
+3. 依赖： 必需扩展curl、zip、pcntl、redis，可选扩展proctitle
+4. 配置： 即config.php，需要参考config.sample.php(重命名或复制一份)，必填项是REDIS和TOKEN
 5. 启动： 
     - 启动php-fpm进程：例如`service php-fpm start`
     - 启动队列处理进程：sh online_rq.sh start # 若需前台启动，将start换成run即可

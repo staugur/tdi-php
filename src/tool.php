@@ -383,13 +383,13 @@ function request(string $url, array $data=null, int $timeout=10, bool $parse_jso
     //批量下载图片
     @param pics array: 格式要求是二维数组，嵌套的数组格式要求有imgUrl和imgName
 */
-function batchDownloadImages(array $pics, string $download_dir=null)
+function batchDownloadImages(array $pics, string $download_dir=null, int $diskLimit=80)
 {
     $download_dir = $download_dir ? $download_dir : __DIR__;
     if (!is_array($pics)) {
         return;
     }
-    if (diskRate($download_dir) > 80) {
+    if (diskRate($download_dir) > $diskLimit) {
         return;
     }
     // 计数器

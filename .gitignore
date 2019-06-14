@@ -54,3 +54,4 @@ vendor/**/.git
 ##### Others
 src/downloads/*
 src/logs/*
+src/config.php

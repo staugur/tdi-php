@@ -66,7 +66,7 @@ class DownloadBoard
         if ($ALLOWDOWN === true) {
             Log::info('DownloadBoard starting...');
             foreach (array_chunk($board_pins, 100) as $pics) {
-                batchDownloadImages($pics, $board_id);
+                batchDownloadImages($pics, $board_id, $diskLimit);
                 //休息一下
                 sleep(5);
             }
