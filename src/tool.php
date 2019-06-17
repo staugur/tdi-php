@@ -100,11 +100,11 @@ function getRedisConnect(string $url)
 function formatSize(int $bytes, int $decimals = 2)
 {
     $quant = array(
-        'TB' => 1099511627776, // pow( 1024, 4)
-        'GB' => 1073741824, // pow( 1024, 3)
-        'MB' => 1048576, // pow( 1024, 2)
-        'KB' => 1024, // pow( 1024, 1)
-        'B ' => 1, // pow( 1024, 0)
+        'T' => 1099511627776, // pow( 1024, 4)
+        'G' => 1073741824, // pow( 1024, 3)
+        'M' => 1048576, // pow( 1024, 2)
+        'K' => 1024, // pow( 1024, 1)
+        'B' => 1, // pow( 1024, 0)
     );
 
     foreach ($quant as $unit => $mag) {
@@ -308,10 +308,10 @@ class Log
             mkdir(__DIR__.'/logs');
         }
         $filename = self::$filename;
-        // 来源文件与行号
-        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
-        $file = $trace[0]['file'];
-        $line = $trace[0]['line'];
+        // 来源文件与行号，回溯2条
+        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, $limit=2);
+        $file = $trace[1]['file'];
+        $line = $trace[1]['line'];
         // 格式化消息
         if (is_array($msg)) {
             $msg = json_encode($msg);

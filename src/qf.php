@@ -68,7 +68,7 @@ class DownloadBoard
             foreach (array_chunk($board_pins, 100) as $pics) {
                 batchDownloadImages($pics, $board_id, $diskLimit);
                 //休息一下
-                sleep(5);
+                sleep(3);
             }
             Log::info('DownloadBoard ending...');
         }
