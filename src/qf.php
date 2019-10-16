@@ -59,7 +59,7 @@ class DownloadBoard
         }
         if (diskRate($downloadDir) > $diskLimit) {
             $ALLOWDOWN = false;
-            $this->writeREADME($board_id.'/README.txt', 'Disk usage is too high');
+            $this->writeREADME($board_id.'/README.txt', "Error board_id: ${board_id}\r\nDisk usage is too high");
         }
         //并发下载图片
         $stime = time();
