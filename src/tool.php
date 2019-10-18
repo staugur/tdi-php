@@ -226,7 +226,7 @@ class MakeZip
 
         //目录中的所有文件
         $files = array();
-        $this->getfiles($dir, $files);
+        getfiles($dir, $files);
         $files = $this->array_iconv($files);
         if (empty($files)) {
             die(' the dir is empty');
@@ -238,7 +238,8 @@ class MakeZip
         if ($res === true) {
             foreach ($files as $v) {
                 // 设定在压缩包内文件名
-                $_in_zip_filename = str_replace($dir.'/', '', $v);
+                $_va = explode('/', $v);
+                $_in_zip_filename = end($_va);
                 // 依据文件后缀判断是否排除(即不压缩)
                 if (is_file($v) && !in_array(pathinfo($_in_zip_filename, PATHINFO_EXTENSION), $exclude)) {
                     $zip->addFile($v, $_in_zip_filename);
@@ -270,26 +271,65 @@ class MakeZip
         }
         return $output;
     }
+}
 
     //获取目录中文件赋值给$files
-    private function getfiles($dir, &$files=array())
-    {
-        if (!is_dir($dir)) {
-            return false;
-        }
-        if (substr($dir, -1)=='/') {
-            $dir = substr($dir, 0, strlen($dir)-1);
-        }
-        $_files = scandir($dir);
-        foreach ($_files as $v) {
-            if ($v != '.' && $v!='..') {
-                if (is_file($dir.'/'.$v)) {
-                    $files[] = $dir.'/'.$v;
-                }
+function getfiles($dir, &$files=array())
+{
+    if (!is_dir($dir)) {
+        return false;
+    }
+    if (substr($dir, -1)=='/') {
+        $dir = substr($dir, 0, strlen($dir)-1);
+    }
+    $_files = scandir($dir);
+    foreach ($_files as $v) {
+        if ($v != '.' && $v!='..') {
+            if (is_file($dir.'/'.$v)) {
+                $files[] = $dir.'/'.$v;
             }
         }
-        return $files;
     }
+    return $files;
+}
+
+function make_tarfile(string $tar_filename, string $tar_path, array $exclude=[])
+{
+    if (!is_dir($tar_path)) {
+        die('Not exists dir '.$tar_path);
+    }
+
+    //判断是否为zip后缀
+    if (pathinfo($tar_filename, PATHINFO_EXTENSION) != 'tar') {
+        die('only Support tar files');
+    }
+
+    $tar_path = str_replace('\\', '/', $tar_path);
+    $tar_filename = str_replace('\\', '/', $tar_filename);
+    $files = array();
+    getfiles($tar_path, $files);
+    $tar = new PharData($tar_filename);
+
+    // ADD FILES TO tar FILE
+    foreach ($files as $v) {
+        // 设定在压缩包内文件名
+        $_va = explode('/', $v);
+        $_in_zip_filename = end($_va);
+        // 依据文件后缀判断是否排除(即不压缩)
+        if (is_file($v) && !in_array(pathinfo($_in_zip_filename, PATHINFO_EXTENSION), $exclude)) {
+            $tar->addFile($v, $_in_zip_filename);
+            $to_be_unlinked[] = $v;
+        }
+    }
+
+    // COMPRESS archive.tar FILE. COMPRESSED FILE WILL BE archive.tar.gz
+    //$tar->compress(Phar::NONE);
+
+    //由于zip需要close后才执行压缩操作，所以只能在这里删除压缩的文件
+    foreach ($to_be_unlinked as $v) {
+        unlink($v);
+    }
+    return realpath($tar_filename);
 }
 
 /*

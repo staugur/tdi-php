@@ -1,8 +1,5 @@
 <?php
 
-// 版本号
-define('VERSION', '0.1.0');
-
 // Set this service status: ready or tardy
 define('STATUS', 'ready');
 

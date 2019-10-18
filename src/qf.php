@@ -75,12 +75,11 @@ class DownloadBoard
         //计算总共下载用时，不包含压缩文件的过程
         $dtime = time() - $stime;
         //定义压缩排除
-        $exclude = [".zip", ".lock"];
+        $exclude = ["zip", "lock", "tar"];
         # 判断是否有足够的空间可以执行压缩命令
         if (diskRate($downloadDir, 'all')['available'] > getDirSize($downloadDir, $exclude)) {
             //基本判断有足够空间执行压缩
-            $zip = new MakeZip;
-            $zipfilepath = $zip->zip($board_id, $uifn, $exclude);
+            $zipfilepath = make_tarfile($uifn, $board_id, $exclude);
             Log::info('DownloadBoard make_archive over, path is '.$zipfilepath);
             //检测压缩文件大小
             $size = formatSize(filesize($zipfilepath));

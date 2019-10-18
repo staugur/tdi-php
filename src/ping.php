@@ -20,6 +20,7 @@ date_default_timezone_set('Asia/Shanghai');
 header('Content-Type:application/json; charset=utf-8');
 
 // 引入配置文件和工具
+require_once './version.php';
 require_once './config.php';
 require_once './tool.php';
 

@@ -21,7 +21,7 @@ function execute_cleanDownload(int $hours=12)
         $files = scandir($DOWNLOADPATH);
         foreach ($files as $uifn) {
             $filepath = $DOWNLOADPATH.'/'.$uifn;
-            if (is_file($filepath) && pathinfo($filepath, PATHINFO_EXTENSION) === 'zip') {
+            if (is_file($filepath) && in_array(pathinfo($filepath, PATHINFO_EXTENSION), ['zip', 'tar'])) {
                 list($aid, $mst) = explode('_', pathinfo($filepath, PATHINFO_FILENAME));
                 if ($aid === 'hb') {
                     // 中心端接收到请求时的时间戳
