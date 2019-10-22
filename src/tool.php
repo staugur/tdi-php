@@ -134,7 +134,6 @@ function memRate()
     $res['memPercent'] = (floatval($res['memTotal'])!=0)?round($res['memUsed']/$res['memTotal']*100, 2):0;
     return $res['memPercent'];
 }
-echo memRate();
 
 //五分钟负载
 function loadStat()
