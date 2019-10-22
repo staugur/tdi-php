@@ -130,10 +130,11 @@ function memRate()
     $res['memFree'] = round($buf[2][0]*1024, 2);
     $res['memBuffers'] = round($buffers[1][0]*1024, 2);
     $res['memCached'] = round($buf[3][0]*1024, 2);
-    $res['memUsed'] = $res['memTotal']-$res['memFree'];
+    $res['memUsed'] = $res['memTotal']-$res['memFree']-$res['memBuffers']-$res['memCached'];
     $res['memPercent'] = (floatval($res['memTotal'])!=0)?round($res['memUsed']/$res['memTotal']*100, 2):0;
     return $res['memPercent'];
 }
+echo memRate();
 
 //五分钟负载
 function loadStat()
