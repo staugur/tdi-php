@@ -7,6 +7,7 @@ Python版本的仓库地址是：https://github.com/staugur/tdi
 
 Node.js版本的仓库地址是：https://github.com/staugur/tdi-node
 
+Golang版本的仓库地址是：https://github.com/staugur/tdi-go
 
 ## 部署：
 
